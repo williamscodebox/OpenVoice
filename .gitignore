@@ -15,4 +15,5 @@ Texts.txt
 *.xml
 .idea/
 train.txt
+*.wav
 

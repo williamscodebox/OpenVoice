@@ -18,7 +18,7 @@ os.makedirs(output_dir, exist_ok=True)
 
 source_se = torch.load(f'{ckpt_base}/en_default_se.pth').to(device)
 
-reference_speaker = 'resources/example_reference.mp3' # This is the voice you want to clone
+reference_speaker = 'resources/em2.wav' # This is the voice you want to clone
 target_se, audio_name = se_extractor.get_se(reference_speaker, tone_color_converter, target_dir='processed', vad=True)
 
 save_path = f'{output_dir}/output_en_default.wav'
