@@ -14,3 +14,5 @@ build
 Texts.txt
 *.xml
 .idea/
+train.txt
+
