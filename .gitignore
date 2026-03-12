@@ -16,4 +16,5 @@ Texts.txt
 .idea/
 train.txt
 *.wav
+*.mp3
 
