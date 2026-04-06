@@ -2,11 +2,14 @@
 // import viteLogo from './assets/vite.svg'
 // import heroImg from './assets/hero.png'
 import './App.css'
+import Button from "./components/button.js";
+import { main } from "./utils/utils.ts";
 
 import { useEffect, useState } from "react";
 
 function App() {
   const [msg, setMsg] = useState("");
+  const [detail, setDetail] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:8000/api/hello")
@@ -14,9 +17,21 @@ function App() {
       .then(data => setMsg(data.message));
   }, []);
 
+  async function handleClick() {
+    const res = await main();
+    console.log("Response from backend:", res);
+    setDetail(res);
+  }
+
+
+
   return ( <div className="flex h-screen items-center justify-center bg-gray-800 text-white text-2xl font-bold">
      <h1>{msg}</h1>
       App
+      <Button onClick={handleClick} variant="primary">
+        Click Me
+      </Button>
+      <p>{detail}</p>
     </div>
  
   );
