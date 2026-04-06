@@ -6,7 +6,7 @@ import numpy as np
 model = whisper.load_model("base")
 
 RATE = 16000
-DURATION = 1  # seconds
+DURATION = 8  # seconds
 
 print("Listening...")
 
