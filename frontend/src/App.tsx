@@ -20,7 +20,7 @@ function App() {
   async function handleClick() {
     const res = await main();
     console.log("Response from backend:", res);
-    setDetail(res);
+    setDetail(res ?? "");
   }
 
 
