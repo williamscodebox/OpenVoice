@@ -3,7 +3,7 @@
 // import heroImg from './assets/hero.png'
 import './App.css'
 import Button from "./components/button.js";
-import { main } from "./utils/utils.ts";
+import { audioCall } from "./utils/utils.ts";
 
 import { useEffect, useState } from "react";
 
@@ -18,7 +18,7 @@ function App() {
   }, []);
 
   async function handleClick() {
-    const res = await main();
+    const res = await audioCall();
     console.log("Response from backend:", res);
     setDetail(res ?? "");
   }
