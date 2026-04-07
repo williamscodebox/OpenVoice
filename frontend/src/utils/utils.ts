@@ -11,10 +11,9 @@ export async function audioCall() {
   }
 }
 
-const sendAudio = async (audioBlob: Blob) => {
+export async function sendAudio(blob: Blob) {
   const formData = new FormData();
-  // formData.append("file", audioBlob, "input.wav");
-  formData.append("file", audioBlob, "input.webm");
+  formData.append("file", blob, "input.webm");
 
   const res = await fetch("http://localhost:8000/process-audio", {
     method: "POST",
@@ -22,14 +21,8 @@ const sendAudio = async (audioBlob: Blob) => {
   });
 
   const arrayBuffer = await res.arrayBuffer();
-  const blob = new Blob([arrayBuffer], { type: "audio/mpeg" });
-  const url = URL.createObjectURL(blob);
+  const audioBlob = new Blob([arrayBuffer], { type: "audio/mpeg" });
+  const url = URL.createObjectURL(audioBlob);
 
-  const audio = new Audio(url);
-  audio.play();
-};
-
-mediaRecorder.onstop = async () => {
-  const audioBlob = new Blob(chunks, { type: "audio/webm" });
-  await sendAudio(audioBlob);
-};
+  new Audio(url).play();
+}
