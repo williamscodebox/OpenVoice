@@ -1,7 +1,8 @@
 import sys
 import os
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile, File, Response
 from fastapi.middleware.cors import CORSMiddleware
+import io
 # Add parent folder to Python path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..", "OpenVoice")))
 
@@ -26,6 +27,18 @@ def hello():
 @app.get("/api/run")
 def run_script():
     return {"result": newtest.make_voice()}
+
+@app.post("/process-audio")
+async def process_audio(file: UploadFile = File(...)):
+    input_bytes = await file.read()
+    input_buffer = io.BytesIO(input_bytes)
+
+    # TODO: your OpenVoice processing here
+    # processed_bytes = openvoice.process(input_buffer)
+
+    processed_bytes = input_bytes  # echo for now
+
+    return Response(content=processed_bytes, media_type="audio/mpeg")
 
 # to run this server in terminal
 # go to folder main is in and run
